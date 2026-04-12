@@ -31,7 +31,8 @@ async function init() {
     const lat = data.location.lat;
     const lng = data.location.lng;
 
-    const zoomLevel = window.innerWidth <= 768 ? 10 : 13;
+    const isMobile = window.innerWidth <= 768;
+    const zoomLevel = isMobile ? 10 : 13;
     map.setView([lat, lng], zoomLevel);
 
     marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
@@ -62,7 +63,8 @@ async function handleSearch(e) {
     const lat = data.location.lat;
     const lng = data.location.lng;
 
-     const zoomLevel = window.innerWidth <= 768 ? 10 : 13;
+    const isMobile = window.innerWidth <= 768;
+     const zoomLevel = isMobile ? 10 : 13;
     map.setView([lat, lng], zoomLevel);
 
 
