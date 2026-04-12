@@ -9,8 +9,7 @@ body {
 html, body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
+    
 }
 
 #map {
@@ -28,13 +27,12 @@ html, body {
     --light-gray: hsl(0, 0%, 58%);
 }
 
-.container {
+.app-container {
     display: flex;
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
     flex-direction: column;
 
-    background: white;
 }
 
 .content {
