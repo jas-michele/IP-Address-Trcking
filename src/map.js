@@ -31,7 +31,8 @@ async function init() {
     const lat = data.location.lat;
     const lng = data.location.lng;
 
-    map.setView([lat, lng], 13);
+    const zoomLevel = window.innerWidth <= 768 ? 10 : 13;
+    map.setView([lat, lng], zoomLevel);
 
     marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
 
@@ -41,6 +42,10 @@ async function init() {
 
 init();
 
+window.addEventListener('resize', () => {
+    map.invalidateSize();
+})
+
 async function handleSearch(e) {
     // console.log("submit working");
     e.preventDefault();
@@ -49,10 +54,16 @@ async function handleSearch(e) {
 
     const data = await fetchIP(inputIP);
 
+    if(!data || !data.location) {
+        alert("Unable to fetch IP data. Please try again.");
+        return;
+    }
+
     const lat = data.location.lat;
     const lng = data.location.lng;
 
-    map.setView([lat, lng], 13);
+     const zoomLevel = window.innerWidth <= 768 ? 10 : 13;
+    map.setView([lat, lng], zoomLevel);
 
 
     if (marker) {
