@@ -2,7 +2,13 @@
 let marker;
 const form = document.querySelector('form');
 
-console.log("about to create map");
+const customIcon = L.icon({
+    iconUrl: './images/icon-location.svg',
+    iconSize: [30, 40],
+    iconAnchor: [15, 40],
+});
+
+// console.log("about to create map");
 const map = L.map('map').setView([51.505, -0.09], 13);
 
 form.addEventListener("submit", handleSearch);
@@ -27,7 +33,7 @@ async function init() {
 
     map.setView([lat, lng], 13);
 
-    marker = L.marker([lat, lng]).addTo(map);
+    marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
 
     updateUI(data);
 
@@ -50,9 +56,9 @@ async function handleSearch(e) {
 
 
     if (marker) {
-     marker.setLatLng([lat, lng]);
+     marker.setLatLng([lat, lng]).setIcon(customIcon);
     }else {
-        marker = L.marker([lat, lng]).addTo(map);
+        marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
     }
 
     updateUI(data);
