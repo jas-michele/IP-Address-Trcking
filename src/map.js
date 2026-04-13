@@ -70,7 +70,7 @@ async function handleSearch(e) {
     const data = await fetchIP(searchValue);
 
     if(!data || !data.location) {
-        alert("Unable to fetch IP data. Please try again.");
+        alert("Unable to fetch IP data or domain. Please try again.");
         return;
     }
 
