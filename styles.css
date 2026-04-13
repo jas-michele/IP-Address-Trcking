@@ -74,6 +74,10 @@ input::placeholder {
     font-size: 14px;
 }
 
+input:hover {
+    background: rgb(197, 193, 201);
+}
+
 .search-btn {
     background: black;
     border: none;
