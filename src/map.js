@@ -1,5 +1,7 @@
 // console.log("map.js loaded");
 let marker;
+let mapsUrl = "";
+
 const form = document.querySelector('form');
 
 const customIcon = L.icon({
@@ -31,11 +33,17 @@ async function init() {
     const lat = data.location.lat;
     const lng = data.location.lng;
 
+    mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+
     const isMobile = window.innerWidth <= 768;
     const zoomLevel = isMobile ? 10 : 13;
     map.setView([lat, lng], zoomLevel);
 
     marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
+
+    marker.on("click", () => {
+        window.open(mapsUrl, "_blank");
+    })
 
     updateUI(data);
 
@@ -69,6 +77,8 @@ async function handleSearch(e) {
     const lat = data.location.lat;
     const lng = data.location.lng;
 
+    mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+
     const isMobile = window.innerWidth <= 768;
      const zoomLevel = isMobile ? 10 : 13;
     map.setView([lat, lng], zoomLevel);
@@ -79,6 +89,10 @@ async function handleSearch(e) {
     }else {
         marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
     }
+
+    marker.on("click", () => {
+        window.open(mapsUrl, "_blank");
+    });
 
     updateUI(data);
     form.reset();
