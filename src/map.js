@@ -51,9 +51,15 @@ async function handleSearch(e) {
     // console.log("submit working");
     e.preventDefault();
 
-    const inputIP = document.getElementById('searchInput').value;
+    const searchValue = document.getElementById('searchInput').value.trim();
 
-    const data = await fetchIP(inputIP);
+
+    if (!searchValue) {
+        alert("Please enter an IP address or domain.");
+        return;
+    }
+
+    const data = await fetchIP(searchValue);
 
     if(!data || !data.location) {
         alert("Unable to fetch IP data. Please try again.");
